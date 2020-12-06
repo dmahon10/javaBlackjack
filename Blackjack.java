@@ -97,7 +97,7 @@ class Blackjack
             }
 
             else if (choice == 2) {
-                keyboard.close();
+        
                 break;
             }
 
@@ -106,10 +106,10 @@ class Blackjack
             }
             if (playerScore > 21) {
                 System.out.print("Bust. You lose. \n");
-                keyboard.close();
+          
                 return false;
             }
-            keyboard.close();
+
 
         }
 
