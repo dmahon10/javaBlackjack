@@ -9,7 +9,6 @@ class CardCountingSim
         double money = PURSE;
         double runningCount = 0;
         double trueCount = 0;
-        int numDecks = 0;
         double rightBet = 5;
         boolean playerWon;
         System.out.println("Welcome to this two deck Blackjack simulation.\n Simulation Running...");
@@ -35,7 +34,7 @@ class CardCountingSim
             }
             else rightBet = 5;
 
-//Deal cards and adjust running count
+            //Deal cards and adjust running count
             playerHand.addCard(deck.dealCard());
             runningCount = runCount((playerHand.getCard(0)).valueInt(), runningCount);
 
@@ -48,7 +47,7 @@ class CardCountingSim
             dealerHand.addCard(deck.dealCard());
             runningCount = runCount((dealerHand.getCard(1)).valueInt(), runningCount);
 
-//Correct for duality of Ace's value (1 or 11)
+            //Correct for duality of Ace's value (1 or 11)
             int playerScore = 0;
             int dealerScore = 0;
 
@@ -65,7 +64,7 @@ class CardCountingSim
                 playerWon = false;
             }
 
-//Basic Strategy Simulation with added High/Low Running Count technique
+            //Basic Strategy Simulation with added High/Low Running Count technique
             int dealerUp = (dealerHand.getCard(0)).valueInt();
 
             while (playerScore < 21) {
@@ -104,7 +103,7 @@ class CardCountingSim
                 }
             }
 
-//Dealer's play
+            //Dealer's play
             while (dealerScore <= 16) {
                 dealerHand.addCard(deck.dealCard());
                 dealerScore += (dealerHand.getCard(dealerHand.numOfCards()-1).valueInt());
@@ -125,7 +124,7 @@ class CardCountingSim
 
             handCounter++;
 
-//Distribute winnings
+            //Distribute winnings
             if (playerWon) {
                 money += rightBet;
             }
@@ -133,7 +132,7 @@ class CardCountingSim
                 money -= rightBet;
             }
 
-//Test the state of the game
+            //Test the state of the game
             if (money <= 0)
             {
                 System.out.print("You're out of money! ");
@@ -155,7 +154,7 @@ class CardCountingSim
         }
     }
 
-//High/Low card counting technique
+    //High/Low card counting technique
     public static double runCount(int cardValue, double currentCount) {
 
         if (cardValue == 1 || cardValue > 9) {

@@ -16,7 +16,7 @@ class BasicStrategy
         System.out.println("Welcome to this two deck Blackjack simulation.\n Simulation Running...");
 
         while (true) {
-// Uses basic flat bet blackjack strategy. Same small bet for each hand.
+            // Uses basic flat bet blackjack strategy. Same small bet for each hand.
             bet = 5;
             handCounter ++;
             boolean playerWon = simulateGame();
@@ -51,7 +51,7 @@ class BasicStrategy
         dealerHand.addCard(deck.dealCard());
         dealerHand.addCard(deck.dealCard());
 
-//Accounts for duality of Ace value ( 1 or 11)
+        //Accounts for duality of Ace value ( 1 or 11)
         int playerScore = 0;
         int dealerScore = 0;
 
@@ -68,7 +68,7 @@ class BasicStrategy
             return false;
         }
 
-//Basic Strategy Simulation
+        //Basic Strategy Simulation
 
         int dealerUp = (dealerHand.getCard(0)).valueInt();
 
@@ -125,7 +125,7 @@ class BasicStrategy
         }
     }
 
-//Accounts for ace value duality (1 or 11)
+    //Accounts for ace value duality (1 or 11)
     public static int aceScore(int card1, int card2)
     {
         int score = 0;

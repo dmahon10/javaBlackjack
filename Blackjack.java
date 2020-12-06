@@ -11,7 +11,7 @@ class Blackjack
     {
         int money = 100;
         int bet;
-        System.out.println("Welcome to this simple Blackjack game.");
+        System.out.println("Welcome to this Blackjack game.");
         Scanner keyboard = new Scanner(System.in);
 
         while (true) {
@@ -26,7 +26,8 @@ class Blackjack
                 }
             } while (bet < 0 || bet > money);
             if (bet == 0) {
-                System.out.println(" Game exited.");
+                System.out.println("\nGame exited.");
+                keyboard.close();
                 break;
             }
             boolean playerWon = playGame();
@@ -35,7 +36,8 @@ class Blackjack
             if (money <= 0)
             {
                 System.out.print("You're out of money!");
-                System.out.print("Game exited.");
+                System.out.println("\nGame exited.");
+                keyboard.close();
                 break;
             }
         }
@@ -49,7 +51,7 @@ class Blackjack
 
         deck.shuffle();
 
-//create starting hands
+        //Create starting hands
         playerHand.addCard(deck.dealCard());
         playerHand.addCard(deck.dealCard());
         dealerHand.addCard(deck.dealCard());
@@ -59,34 +61,34 @@ class Blackjack
         int dealerScore = (dealerHand.getCard(0)).valueInt() + (dealerHand.getCard(1)).valueInt();
 
 
-        System.out.println ("Your card values are are: " + (playerHand.getCard(0)).valueInt() + " and " +
+        System.out.println ("\nYour card values are are: " + (playerHand.getCard(0)).valueInt() + " and " +
             (playerHand.getCard(1)).valueInt() + " for a total of " + playerScore);
 
-        System.out.println ("Dealer's upcard value is: " + (dealerHand.getCard(0)).valueInt());
+        System.out.println ("\nDealer's upcard value is: " + (dealerHand.getCard(0)).valueInt());
 
         if (playerScore == 21 && dealerScore == 21) {
             System.out.println("You and the dealer both hit Blackjack. It is a tie. Dealer wins.");
             return false;
         }
         else if (playerScore == 21) {
-            System.out.print("You hit blackjack! You win!");
+            System.out.print("\nYou hit blackjack! You win!");
             return true;
         }
         else if (dealerScore == 21) {
-            System.out.println("Dealer hit blackjack. Dealer wins.");
+            System.out.println("\nDealer hit blackjack. Dealer wins.");
             return false;
         }
 
         while (playerScore < 21) {
 
             Scanner keyboard = new Scanner(System.in);
-            System.out.println("Would you like to hit or stand? Enter 1 to hit or 2 to stand: ");
+            System.out.println("\nWould you like to hit or stand? Enter 1 to hit or 2 to stand: ");
             int choice = keyboard.nextInt();
 
             if (choice == 1){
                 playerHand.addCard(deck.dealCard());
                 playerScore += (playerHand.getCard(playerHand.numOfCards()-1).valueInt());
-                System.out.println("Your card values are now: ");
+                System.out.println("\nYour card values are now: ");
 
                 for (int i = 0; i < playerHand.numOfCards(); i++){
                     System.out.print((playerHand.getCard(i)).valueInt() + " ");
@@ -95,6 +97,7 @@ class Blackjack
             }
 
             else if (choice == 2) {
+                keyboard.close();
                 break;
             }
 
@@ -103,8 +106,11 @@ class Blackjack
             }
             if (playerScore > 21) {
                 System.out.print("Bust. You lose. \n");
+                keyboard.close();
                 return false;
             }
+            keyboard.close();
+
         }
 
         System.out.println("Dealer reveals second card: " + (dealerHand.getCard(1)).valueInt());
